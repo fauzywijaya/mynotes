@@ -15,8 +15,8 @@ class RegisterFormSection extends ConsumerWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         InputFormWidget(
-          controller: controller.emailController,
-          hintText: "Email",
+          controller: controller.usernameController,
+          hintText: "Username",
           onChanged: (value) {},
         ),
         Gap.h16,
@@ -28,22 +28,11 @@ class RegisterFormSection extends ConsumerWidget {
         ),
         Gap.h16,
         InputFormWidget(
-          controller: controller.emailController,
-          hintText: "Username",
+          controller: controller.fullnameController,
+          hintText: "Full Name",
           onChanged: (value) {},
         ),
         Gap.h16,
-        InputFormWidget(
-          controller: controller.birthdateController,
-          onChanged: (value) {},
-          hintText: 'Birthdate',
-        ),
-        Gap.h16,
-        InputFormWidget(
-          controller: controller.genderController,
-          onChanged: (value) {},
-          hintText: 'Gender',
-        ),
       ],
     );
   }

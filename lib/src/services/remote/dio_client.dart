@@ -200,6 +200,6 @@ class DioClient {
 final dioClientProvider = Provider<DioClient>((ref) {
   final dio = Dio();
   final httpClient = HttpClient();
-  const baseUrl = 'https://reqres.in';
+  const baseUrl = 'https://notes.reskimulud.my.id';
   return DioClient(baseUrl: baseUrl, dio: dio, httpClient: httpClient);
 });

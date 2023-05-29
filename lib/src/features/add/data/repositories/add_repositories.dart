@@ -11,7 +11,7 @@ class AddRepository {
   Future<Result<void>> postAdd({required AddPost addPost}) async {
     try {
       await _dioClient.post(
-        Endpoints.addNotes,
+        Endpoints.notes,
         data: addPost.toJson(),
       );
       return const Result.success(null);

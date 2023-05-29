@@ -7,15 +7,6 @@ class HomeListController extends StateNotifier<AsyncValue<HomeList>> {
       : super(AsyncData<HomeList>(HomeList()));
 
   final HomeService homeService;
-
-  Future<void> getHomeList() async {
-    state = const AsyncValue.loading();
-    final result = await homeService.getHomeList();
-    result.when(
-      success: (data) => state = AsyncValue.data(data),
-      failure: (error, stacktrace) => state = AsyncError(error, stacktrace),
-    );
-  }
 }
 
 final homeListControllerProvider =

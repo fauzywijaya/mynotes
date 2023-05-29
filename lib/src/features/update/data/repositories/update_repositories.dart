@@ -11,7 +11,7 @@ class UpdateRepository {
   Future<Result<void>> postUpdate({required UpdatePost updatePost}) async {
     try {
       await _dioClient.put(
-        Endpoints.addNotes,
+        Endpoints.notesDetail,
         data: updatePost.toJson(),
       );
       return const Result.success(null);
