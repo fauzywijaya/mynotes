@@ -1,5 +1,3 @@
-export 'add/domain/add_post.dart';
-export 'update/domain/update_post.dart';
-
-export 'home/domain/home.dart';
-export 'home/domain/home_list.dart';
+export 'auth/domain/request_login.dart';
+export 'auth/domain/request_register.dart';
+export 'auth/domain/user.dart';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:notes/src/common_widget/common_widget.dart';
 import 'package:notes/src/constants/constants.dart';
 
 enum ButtonType {
@@ -11,6 +12,7 @@ class ButtonWidget extends StatelessWidget {
   final ButtonType buttonType;
   final Function()? onTap;
   final String text;
+  final bool isLoading;
   final Widget? prefix;
 
   const ButtonWidget({
@@ -19,12 +21,14 @@ class ButtonWidget extends StatelessWidget {
     this.onTap,
     required this.text,
     this.prefix,
+    this.isLoading = false,
   }) : super(key: key);
 
   const ButtonWidget.primary({
     Key? key,
     this.onTap,
     required this.text,
+    this.isLoading = false,
     this.prefix,
   })  : buttonType = ButtonType.primary,
         super(key: key);
@@ -33,6 +37,7 @@ class ButtonWidget extends StatelessWidget {
     Key? key,
     this.onTap,
     required this.text,
+    this.isLoading = false,
     this.prefix,
   })  : buttonType = ButtonType.outlined,
         super(key: key);
@@ -69,19 +74,25 @@ class ButtonWidget extends StatelessWidget {
             vertical: SizeApp.h16,
           ),
           child: Center(
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (prefix != null) ...[
-                  prefix!,
-                  Gap.w8,
-                ],
-                Text(
-                  text,
-                  style: TypographyApp.headline3,
-                ),
-              ],
-            ),
+            child: isLoading
+                ? SizedBox(
+                    height: SizeApp.customHeight(22),
+                    width: SizeApp.customWidth(22),
+                    child: const LoadingWidget(),
+                  )
+                : Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (prefix != null) ...[
+                        prefix!,
+                        Gap.w8,
+                      ],
+                      Text(
+                        text,
+                        style: TypographyApp.headline3,
+                      ),
+                    ],
+                  ),
           ),
         ),
       ),

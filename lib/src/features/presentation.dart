@@ -1,14 +1,3 @@
-export 'add/presentation/add_controller.dart';
-export 'add/presentation/add_page.dart';
-
-export 'update/presentation/update_controller.dart';
-export 'update/presentation/update_page.dart';
-
-export 'home/presentation/home_page.dart';
-export 'home/presentation/home_controller.dart';
-export 'home/presentation/home_state.dart';
-export 'home/presentation/widget/widget.dart';
-
 ///
 // *AUTH
 ///
@@ -23,3 +12,23 @@ export 'auth/presentation/register/register_page.dart';
 export 'auth/presentation/register/register_controller.dart';
 export 'auth/presentation/register/register_state.dart';
 export 'auth/presentation/register/widget/widget.dart';
+
+///
+// *NOTES
+///
+
+// *NOTES - HOME
+export 'notes/presentation/home/home_page.dart';
+export 'notes/presentation/home/home_controller.dart';
+export 'notes/presentation/home/home_state.dart';
+export 'notes/presentation/home/widget/widget.dart';
+
+// *NOTES - ADD
+export 'notes/presentation/add/add_page.dart';
+export 'notes/presentation/add/add_controller.dart';
+export 'notes/presentation/add/add_state.dart';
+
+// *NOTES - UPDATE
+export 'notes/presentation/update/update_page.dart';
+export 'notes/presentation/update/update_controller.dart';
+export 'notes/presentation/update/update_state.dart';

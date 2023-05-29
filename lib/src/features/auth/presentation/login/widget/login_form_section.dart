@@ -15,7 +15,7 @@ class LoginFormSection extends ConsumerWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         InputFormWidget(
-          controller: controller.emailController,
+          controller: controller.usernameController,
           hintText: 'Email',
           onChanged: (value) {},
         ),
