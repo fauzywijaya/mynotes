@@ -16,21 +16,13 @@ class HomeListWidget extends ConsumerStatefulWidget {
 
 class _HomeListWidgetState extends ConsumerState<HomeListWidget> {
   @override
-  void didChangeDependencies() {
-    Future.delayed(Duration.zero, () {
-      ref.read(homeListControllerProvider.notifier).getHomeList();
-    });
-    super.didChangeDependencies();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final AsyncValue<HomeList> homes = ref.watch(homeListControllerProvider);
     return AsyncValueWidget<HomeList>(
       value: homes,
       data: (value) {
         if (value.data.isEmpty) {
-          return const LoadingWidget();
+          return const Center(child: LoadingWidget());
         }
         return ListView.builder(
           itemCount: value.data.length,
@@ -69,10 +61,6 @@ class _HomeListWidgetState extends ConsumerState<HomeListWidget> {
             );
           },
         );
-        // // Padding(
-        // //   padding: EdgeInsets.only(bottom: SizeApp.h20),
-        //   child:
-        // // );
       },
     );
   }

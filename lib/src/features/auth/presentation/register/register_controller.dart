@@ -6,10 +6,9 @@ class RegisterController extends StateNotifier<RegisterState> {
   RegisterController() : super(const RegisterState());
 
   final usernameController = TextEditingController();
-  final birthdateController = TextEditingController();
-  final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final genderController = TextEditingController();
+  final fullnameController = TextEditingController();
+
   void onObscureTap() {
     state = state.copyWith(
       isObsecure: !state.isObsecure,
@@ -19,10 +18,8 @@ class RegisterController extends StateNotifier<RegisterState> {
   @override
   void dispose() {
     usernameController.dispose();
-    birthdateController.dispose();
-    emailController.dispose();
     passwordController.dispose();
-    genderController.dispose();
+    fullnameController.dispose();
     super.dispose();
   }
 }

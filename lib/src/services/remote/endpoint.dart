@@ -1,5 +1,6 @@
 class Endpoints {
-  static const String notes = '/list';
-  static const String addNotes = '/detail/{id}';
-  static const String reqres = '/api/users?page=2';
+  static const String login = '/authentications';
+  static const String register = '/users';
+  static const String notes = '/notes';
+  static const String notesDetail = '/notes/:id';
 }
