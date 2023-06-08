@@ -17,14 +17,18 @@ class InputFormWidget extends StatelessWidget {
   final Function()? onObscureTap;
   final InputFormType inputFormType;
   final bool readOnly;
+  final int? maxLines;
+  final String? Function(String?)? validator;
   final VoidCallback? onTap;
 
-  const InputFormWidget({
-    super.key,
-    required this.controller,
-    required this.hintText,
-    this.onChanged,
-  })  : inputFormType = InputFormType.normal,
+  const InputFormWidget(
+      {super.key,
+      required this.controller,
+      required this.hintText,
+      this.onChanged,
+      this.maxLines,
+      this.validator})
+      : inputFormType = InputFormType.normal,
         isObscure = false,
         readOnly = false,
         onObscureTap = null,
@@ -37,20 +41,24 @@ class InputFormWidget extends StatelessWidget {
     this.onTap,
     this.onChanged,
     this.onObscureTap,
+    this.validator,
     this.isObscure = true,
   })  : inputFormType = InputFormType.password,
+        maxLines = 1,
         readOnly = false;
 
   bool get isPassword => inputFormType == InputFormType.password;
 
-  const InputFormWidget.button({
-    super.key,
-    required this.controller,
-    required this.hintText,
-    this.onTap,
-  })  : inputFormType = InputFormType.button,
+  const InputFormWidget.button(
+      {super.key,
+      required this.controller,
+      required this.hintText,
+      this.onTap,
+      this.validator})
+      : inputFormType = InputFormType.button,
         isObscure = false,
         readOnly = true,
+        maxLines = 1,
         onChanged = null,
         onObscureTap = null;
 
@@ -61,6 +69,8 @@ class InputFormWidget extends StatelessWidget {
       onChanged: onChanged,
       readOnly: readOnly,
       onTap: onTap,
+      maxLines: maxLines,
+      validator: validator,
       obscureText: isObscure,
       decoration: InputDecoration(
         filled: true,

@@ -25,7 +25,6 @@ dependencies:
   cached_network_image: ^3.2.1
   cupertino_icons: ^1.0.2
   dio: ^4.0.6
-  equatable: ^2.0.5
   flutter:
     sdk: flutter
   flutter_launcher_icons: ^0.12.0

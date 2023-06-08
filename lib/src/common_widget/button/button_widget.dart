@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notes/src/common_widget/common_widget.dart';
 import 'package:notes/src/constants/constants.dart';
+import 'package:notes/src/shared/extensions/extensions.dart';
 
 enum ButtonType {
   primary,
@@ -13,16 +14,18 @@ class ButtonWidget extends StatelessWidget {
   final Function()? onTap;
   final String text;
   final bool isLoading;
+  final bool _isEnabled;
   final Widget? prefix;
 
   const ButtonWidget({
-    Key? key,
+    super.key,
     required this.buttonType,
     this.onTap,
     required this.text,
     this.prefix,
     this.isLoading = false,
-  }) : super(key: key);
+    bool? isEnabled,
+  }) : _isEnabled = isEnabled ?? onTap != null;
 
   const ButtonWidget.primary({
     Key? key,
@@ -30,7 +33,9 @@ class ButtonWidget extends StatelessWidget {
     required this.text,
     this.isLoading = false,
     this.prefix,
+    bool? isEnabled,
   })  : buttonType = ButtonType.primary,
+        _isEnabled = isEnabled ?? onTap != null,
         super(key: key);
 
   const ButtonWidget.outlined({
@@ -39,11 +44,16 @@ class ButtonWidget extends StatelessWidget {
     required this.text,
     this.isLoading = false,
     this.prefix,
+    bool? isEnabled,
   })  : buttonType = ButtonType.outlined,
+        _isEnabled = isEnabled ?? onTap != null,
         super(key: key);
 
-  Color getColor() =>
-      buttonType == ButtonType.primary ? ColorApp.lightBlue : ColorApp.darkGrey;
+  Color getColor() => _isEnabled
+      ? buttonType == ButtonType.primary
+          ? ColorApp.lightBlue
+          : ColorApp.darkGrey
+      : ColorApp.grey;
 
   Color getFocusColor() =>
       buttonType == ButtonType.primary ? ColorApp.lightBlue : ColorApp.darkGrey;
@@ -62,7 +72,7 @@ class ButtonWidget extends StatelessWidget {
             : BorderSide.none,
       ),
       child: InkWell(
-        onTap: onTap,
+        onTap: _isEnabled && !isLoading ? onTap : null,
         customBorder: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.r),
         ),
@@ -89,7 +99,9 @@ class ButtonWidget extends StatelessWidget {
                       ],
                       Text(
                         text,
-                        style: TypographyApp.headline3,
+                        style: _isEnabled
+                            ? TypographyApp.headline3
+                            : TypographyApp.headline3.white,
                       ),
                     ],
                   ),

@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 class LoginResponse {
-  final String accessToken;
-  final String refreshToken;
+  final String? accessToken;
+  final String? refreshToken;
 
   LoginResponse({
-    required this.accessToken,
-    required this.refreshToken,
+    this.accessToken,
+    this.refreshToken,
   });
 
   factory LoginResponse.fromRawJson(String str) =>

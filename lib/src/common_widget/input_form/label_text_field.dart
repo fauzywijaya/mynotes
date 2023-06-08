@@ -8,6 +8,7 @@ class LabelTextField extends StatelessWidget {
   final String labelText;
   final String hintText;
   final int? maxLines;
+  final TextEditingController controller;
   final Function(String? value) onChanged;
   const LabelTextField({
     Key? key,
@@ -15,6 +16,7 @@ class LabelTextField extends StatelessWidget {
     required this.hintText,
     required this.onChanged,
     this.maxLines = 1,
+    required this.controller,
   }) : super(key: key);
 
   @override
@@ -26,6 +28,7 @@ class LabelTextField extends StatelessWidget {
         Text(labelText, style: TypographyApp.text1),
         Gap.h8,
         TextField(
+          controller: controller,
           decoration: InputDecoration(
             fillColor: ColorApp.lightGrey,
             filled: true,

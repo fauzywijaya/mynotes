@@ -30,7 +30,7 @@ class AuthRepository {
   Future<Result<LoginResponse>> login(RequestLogin requestLogin) async {
     try {
       final response = await _dioClient.post(
-        Endpoints.register,
+        Endpoints.login,
         data: requestLogin.toJson(),
       );
       return Result.success(LoginResponse.fromJson(response['data']));

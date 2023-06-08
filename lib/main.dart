@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:notes/src/services/services.dart';
 
 import 'src/constants/constants.dart';
 import 'src/routes/routes.dart';
 
 void main() async {
+  /// [INFO] Init hive local db
+  await hiveInit();
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const ProviderScope(child: MyApp()));
 }

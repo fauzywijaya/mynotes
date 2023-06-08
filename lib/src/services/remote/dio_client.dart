@@ -1,9 +1,13 @@
-import 'package:dio/dio.dart';
-import 'package:dio/adapter.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'dart:io';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:developer';
+import 'dart:io';
+
+import 'package:dio/adapter.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:notes/src/services/local/local.dart';
 
 const _defaultConnectTimeout = 15000;
 const _defaultReceiveTimeout = 15000;
@@ -13,12 +17,16 @@ class DioClient {
 
   late Dio _dio;
   final List<Interceptor>? interceptors;
+  final HiveService hiveService;
 
-  DioClient(
-      {required this.baseUrl,
-      required Dio dio,
-      this.interceptors,
-      required HttpClient httpClient}) {
+  DioClient({
+    required Dio dio,
+    required HttpClient httpClient,
+    required this.baseUrl,
+    this.interceptors,
+    required this.hiveService,
+  }) {
+    final token = hiveService.getUser()?.accessToken;
     _dio = dio;
     _dio
       ..options.baseUrl = baseUrl
@@ -28,6 +36,7 @@ class DioClient {
       ..options.headers = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        if (token != null) 'Authorization': 'Bearer $token',
       };
 
     (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
@@ -200,6 +209,11 @@ class DioClient {
 final dioClientProvider = Provider<DioClient>((ref) {
   final dio = Dio();
   final httpClient = HttpClient();
+  final hiveService = ref.read(hiveServiceProvider);
   const baseUrl = 'https://notes.reskimulud.my.id';
-  return DioClient(baseUrl: baseUrl, dio: dio, httpClient: httpClient);
+  return DioClient(
+      baseUrl: baseUrl,
+      dio: dio,
+      httpClient: httpClient,
+      hiveService: hiveService);
 });
