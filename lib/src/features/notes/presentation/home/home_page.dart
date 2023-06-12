@@ -27,7 +27,7 @@ class HomePage extends ConsumerWidget {
             ),
           ],
         ),
-        body: const SingleChildScrollView(child: HomeListWidget()),
+        body: const HomeListWidget(),
         floatingActionButton: FloatingActionButton(
           backgroundColor: ColorApp.lightBlue,
           onPressed: () {

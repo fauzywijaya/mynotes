@@ -12,6 +12,7 @@ class HomeState {
     this.noteList,
   });
 
+  bool get isLoading => notesValue is AsyncLoading;
   HomeState copyWith({
     AsyncValue<NoteList?>? notesValue,
     NoteList? noteList,

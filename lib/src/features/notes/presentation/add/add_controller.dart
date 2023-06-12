@@ -43,21 +43,21 @@ class AddController extends StateNotifier<AddState> {
   }
 
   void validateForm() {
-    final isValid = validateTitle(titleController.text).isNull() &&
-        validateDesc(descController.text).isNull();
-    state = state.copyWith(isValid: isValid);
+    state = state.copyWith(
+        isAddValid: validateTitleText(titleController.text).isNull() &&
+            validateDescText(descController.text).isNull());
   }
 
-  String? validateTitle(String? value) {
+  String? validateTitleText(String? value) {
     if (value.isNullOrEmpty()) {
-      return 'Title cannot be empty';
+      return "Cannot be empty";
     }
     return null;
   }
 
-  String? validateDesc(String? value) {
+  String? validateDescText(String? value) {
     if (value.isNullOrEmpty()) {
-      return 'Description cannot be empty';
+      return "Cannot be empty";
     }
     return null;
   }
@@ -71,7 +71,7 @@ class AddController extends StateNotifier<AddState> {
 }
 
 final addControllerProvider =
-    StateNotifierProvider<AddController, AddState>((ref) {
+    StateNotifierProvider.autoDispose<AddController, AddState>((ref) {
   final noteService = ref.read(noteServiceProvider);
   return AddController(noteService);
 });

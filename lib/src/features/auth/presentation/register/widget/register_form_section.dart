@@ -24,7 +24,7 @@ class RegisterFormSection extends ConsumerWidget {
           controller: controller.passwordController,
           hintText: "Password",
           onObscureTap: controller.onObscureTap,
-          isObscure: state.isObsecure,
+          isObscure: state.isObscure,
         ),
         Gap.h16,
         InputFormWidget(

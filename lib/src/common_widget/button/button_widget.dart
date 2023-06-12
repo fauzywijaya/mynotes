@@ -20,34 +20,32 @@ class ButtonWidget extends StatelessWidget {
   const ButtonWidget({
     super.key,
     required this.buttonType,
-    this.onTap,
     required this.text,
-    this.prefix,
+    this.onTap,
     this.isLoading = false,
+    this.prefix,
     bool? isEnabled,
   }) : _isEnabled = isEnabled ?? onTap != null;
 
   const ButtonWidget.primary({
-    Key? key,
+    super.key,
     this.onTap,
-    required this.text,
     this.isLoading = false,
+    required this.text,
     this.prefix,
     bool? isEnabled,
   })  : buttonType = ButtonType.primary,
-        _isEnabled = isEnabled ?? onTap != null,
-        super(key: key);
+        _isEnabled = isEnabled ?? onTap != null;
 
   const ButtonWidget.outlined({
-    Key? key,
+    super.key,
     this.onTap,
-    required this.text,
     this.isLoading = false,
+    required this.text,
     this.prefix,
     bool? isEnabled,
   })  : buttonType = ButtonType.outlined,
-        _isEnabled = isEnabled ?? onTap != null,
-        super(key: key);
+        _isEnabled = isEnabled ?? onTap != null;
 
   Color getColor() => _isEnabled
       ? buttonType == ButtonType.primary
@@ -68,13 +66,22 @@ class ButtonWidget extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.r),
         side: isOutlined
-            ? const BorderSide(color: ColorApp.white, width: 0.4)
+            ? const BorderSide(
+                color: ColorApp.white,
+                width: 0.4,
+              )
             : BorderSide.none,
       ),
       child: InkWell(
         onTap: _isEnabled && !isLoading ? onTap : null,
         customBorder: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.r),
+          side: isOutlined
+              ? const BorderSide(
+                  color: ColorApp.white,
+                  width: 0.4,
+                )
+              : BorderSide.none,
         ),
         overlayColor: MaterialStateProperty.all(getFocusColor()),
         focusColor: getFocusColor(),
@@ -87,7 +94,7 @@ class ButtonWidget extends StatelessWidget {
             child: isLoading
                 ? SizedBox(
                     height: SizeApp.customHeight(22),
-                    width: SizeApp.customWidth(22),
+                    width: SizeApp.customHeight(22),
                     child: const LoadingWidget(),
                   )
                 : Row(
@@ -100,9 +107,9 @@ class ButtonWidget extends StatelessWidget {
                       Text(
                         text,
                         style: _isEnabled
-                            ? TypographyApp.headline3
+                            ? TypographyApp.headline3.lightGrey
                             : TypographyApp.headline3.white,
-                      ),
+                      )
                     ],
                   ),
           ),

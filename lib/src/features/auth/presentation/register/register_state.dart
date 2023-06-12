@@ -3,21 +3,21 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RegisterState {
   final AsyncValue<String?> registerValue;
-  final bool isObsecure;
+  final bool isObscure;
   const RegisterState({
     this.registerValue = const AsyncData(null),
-    this.isObsecure = true,
+    this.isObscure = true,
   });
 
   bool get isLoading => registerValue.isLoading;
 
   RegisterState copyWith({
     AsyncValue<String?>? registerValue,
-    bool? isObsecure,
+    bool? isObscure,
   }) {
     return RegisterState(
       registerValue: registerValue ?? this.registerValue,
-      isObsecure: isObsecure ?? this.isObsecure,
+      isObscure: isObscure ?? this.isObscure,
     );
   }
 }

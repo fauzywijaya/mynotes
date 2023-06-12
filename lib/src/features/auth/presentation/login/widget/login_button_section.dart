@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:notes/src/common_widget/common_widget.dart';
 import 'package:notes/src/constants/constants.dart';
 import 'package:notes/src/features/presentation.dart';
-import 'package:notes/src/routes/routes.dart';
 import 'package:notes/src/shared/extensions/extensions.dart';
 
 class LoginButtonSection extends ConsumerWidget {
@@ -25,7 +24,7 @@ class LoginButtonSection extends ConsumerWidget {
         Gap.h32,
         GestureDetector(
           onTap: () {
-            context.goNamed(Routes.register.name);
+            context.go('/register');
           },
           child: Text(
             'Not a Member yet? Register Here',

@@ -19,6 +19,7 @@ class AddPage extends ConsumerWidget {
       next.postNoteValue.maybeWhen(
           data: (data) {
             if (data != null) {
+              ref.read(homeControllerProvider.notifier).getNotesList();
               Navigator.of(context).pop();
               showSuccessSnackbar(context, "Success Add Note");
             }
@@ -33,49 +34,50 @@ class AddPage extends ConsumerWidget {
           color: ColorApp.darkGrey,
           child: SafeArea(
             top: false,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const BottomSheetHolder(),
-                Gap.h20,
-                Text(
-                  'Add Notes',
-                  style: TypographyApp.headline3,
-                  textAlign: TextAlign.start,
-                ),
-                Gap.h20,
-                InputFormWidget(
-                  controller: controller.titleController,
-                  hintText: "Input your title here...",
-                  validator: controller.validateTitle,
-                  onChanged: ((value) {}),
-                ),
-                Gap.h20,
-                InputFormWidget(
-                  controller: controller.descController,
-                  hintText: "Input your Description here...",
-                  maxLines: 4,
-                  validator: controller.validateDesc,
-                  onChanged: ((value) {}),
-                ),
-                Gap.h40,
-                ButtonWidget.primary(
-                  text: "SUBMIT",
-                  onTap: controller.postNotes,
-                  isLoading: state.isLoading,
-                  // isEnabled: state.isValid,
-                ),
-                Gap.h20,
-                state.postNoteValue.maybeWhen(
-                    error: (error, stackTrace) {
-                      return Text(
-                        'Failed to Add Note: ${NetworkExceptions.getErrorMessage(error as NetworkExceptions)}',
-                        style: TypographyApp.text1.red,
-                      );
-                    },
-                    orElse: () => const SizedBox.shrink())
-              ],
+            child: Form(
+              onChanged: controller.validateForm,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const BottomSheetHolder(),
+                  Gap.h20,
+                  Text(
+                    'Add Notes',
+                    style: TypographyApp.headlines1.bold,
+                    textAlign: TextAlign.start,
+                  ),
+                  Gap.h20,
+                  InputFormWidget(
+                    controller: controller.titleController,
+                    hintText: "Input your title here...",
+                    validator: controller.validateTitleText,
+                  ),
+                  Gap.h20,
+                  InputFormWidget(
+                    controller: controller.descController,
+                    hintText: "Input your Description here...",
+                    maxLines: 4,
+                    validator: controller.validateTitleText,
+                  ),
+                  Gap.h40,
+                  ButtonWidget.primary(
+                    text: "SUBMIT",
+                    onTap: controller.postNotes,
+                    isLoading: state.isLoading,
+                    isEnabled: state.isAddValid,
+                  ),
+                  Gap.h20,
+                  state.postNoteValue.maybeWhen(
+                      error: (error, stackTrace) {
+                        return Text(
+                          'Failed to Add Note: ${NetworkExceptions.getErrorMessage(error as NetworkExceptions)}',
+                          style: TypographyApp.text1.red,
+                        );
+                      },
+                      orElse: () => const SizedBox.shrink())
+                ],
+              ),
             ),
           ),
         ),

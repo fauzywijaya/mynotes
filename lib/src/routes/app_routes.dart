@@ -21,28 +21,15 @@ final goRouterProvider = Provider<GoRouter>(
       navigatorKey: navigatorKey,
       debugLogDiagnostics: true,
       urlPathStrategy: UrlPathStrategy.path,
-      initialLocation: '/login',
+      initialLocation: '/',
       routerNeglect: true,
-      redirect: (state) {
-        // if the user is not logged in, they need to login
-        final loggedIn = ref.read(hiveServiceProvider).getUser() != null;
-        final loggingIn = state.subloc == '/login';
-        if (!loggedIn) return loggingIn ? null : '/login';
-
-        // if the user is logged in but still on the login page, send them to
-        // the home page
-        if (loggingIn) return '/home';
-
-        // no need to redirect at all
-        return null;
-      },
       redirectLimit: 1,
       routes: [
-        // GoRoute(
-        //   path: '/',
-        //   name: Routes.splash.name,
-        //   builder: (context, state) => const SplashPage(),
-        // ),
+        GoRoute(
+          path: '/',
+          name: Routes.splash.name,
+          builder: (context, state) => const SplashPage(),
+        ),
         GoRoute(
           path: '/home',
           name: Routes.home.name,

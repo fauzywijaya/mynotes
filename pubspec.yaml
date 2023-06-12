@@ -24,17 +24,23 @@ environment:
 dependencies:
   cached_network_image: ^3.2.1
   cupertino_icons: ^1.0.2
-  dio: ^4.0.6
+  # koneksi api
+  dio: ^4.0.6 
+  
   flutter:
     sdk: flutter
   flutter_launcher_icons: ^0.12.0
-  flutter_riverpod: ^2.0.0
+  # state management 
+  flutter_riverpod: ^2.0.0 
   flutter_screenutil: ^5.7.0
   flutter_svg: 2.0.2
   freezed: ^2.1.1
+  # router
   go_router: ^4.5.1
   google_fonts: ^3.0.1
+  # local
   hive_flutter: ^1.1.0
+  # modal / dialog  box
   modal_bottom_sheet: ^3.0.0-pre
 
 dev_dependencies:

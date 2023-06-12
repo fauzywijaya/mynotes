@@ -3,22 +3,22 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AddState {
   final AsyncValue<String?> postNoteValue;
-  final bool isValid;
+  final bool isAddValid;
 
   AddState({
     this.postNoteValue = const AsyncData(null),
-    this.isValid = false,
+    this.isAddValid = false,
   });
 
   bool get isLoading => postNoteValue is AsyncLoading;
 
   AddState copyWith({
     AsyncValue<String?>? postNoteValue,
-    bool? isValid,
+    bool? isAddValid,
   }) {
     return AddState(
       postNoteValue: postNoteValue ?? this.postNoteValue,
-      isValid: isValid ?? this.isValid,
+      isAddValid: isAddValid ?? this.isAddValid,
     );
   }
 }

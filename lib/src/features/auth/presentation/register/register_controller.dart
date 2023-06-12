@@ -15,7 +15,7 @@ class RegisterController extends StateNotifier<RegisterState> {
 
   void onObscureTap() {
     state = state.copyWith(
-      isObsecure: !state.isObsecure,
+      isObscure: !state.isObscure,
     );
   }
 

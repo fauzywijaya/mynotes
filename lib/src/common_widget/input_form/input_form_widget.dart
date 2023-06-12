@@ -17,6 +17,7 @@ class InputFormWidget extends StatelessWidget {
   final Function()? onObscureTap;
   final InputFormType inputFormType;
   final bool readOnly;
+  final String? initialValue;
   final int? maxLines;
   final String? Function(String?)? validator;
   final VoidCallback? onTap;
@@ -27,6 +28,7 @@ class InputFormWidget extends StatelessWidget {
       required this.hintText,
       this.onChanged,
       this.maxLines,
+      this.initialValue,
       this.validator})
       : inputFormType = InputFormType.normal,
         isObscure = false,
@@ -45,6 +47,7 @@ class InputFormWidget extends StatelessWidget {
     this.isObscure = true,
   })  : inputFormType = InputFormType.password,
         maxLines = 1,
+        initialValue = null,
         readOnly = false;
 
   bool get isPassword => inputFormType == InputFormType.password;
@@ -59,6 +62,7 @@ class InputFormWidget extends StatelessWidget {
         isObscure = false,
         readOnly = true,
         maxLines = 1,
+        initialValue = null,
         onChanged = null,
         onObscureTap = null;
 
@@ -90,7 +94,7 @@ class InputFormWidget extends StatelessWidget {
                 onTap: onObscureTap,
                 child: Text(
                   isObscure ? 'SHOW' : 'HIDE',
-                  style: TypographyApp.text1.grey,
+                  style: TypographyApp.text1.white,
                 ),
               )
             : const SizedBox.shrink(),
