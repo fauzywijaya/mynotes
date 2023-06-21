@@ -33,6 +33,8 @@ class AuthService {
       success: (data) {
         final user = AuthMapper.mapToUser(data);
         _hiveService.saveUser(user);
+        final test = _hiveService.getUser();
+        print(test);
         return const Result.success("Login Success");
       },
       failure: (error, stackTrace) {

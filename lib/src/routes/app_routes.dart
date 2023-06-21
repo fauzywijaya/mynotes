@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes/src/features/presentation.dart';
 import 'package:notes/src/routes/routes.dart';
-import 'package:notes/src/services/services.dart';
 
 enum Routes {
   splash,

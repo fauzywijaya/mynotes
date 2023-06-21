@@ -97,31 +97,3 @@ class UpdatePage extends ConsumerWidget {
     );
   }
 }
-// / class UpdatePage extends ConsumerStatefulWidget {
-//   final String noteId;
-//   const UpdatePage({super.key, required this.noteId});
-
-//   @override
-//   ConsumerState<ConsumerStatefulWidget> createState() => _UpdatePageState();
-// }
-
-// class _UpdatePageState extends ConsumerState<UpdatePage> {
-//   UpdateController get controller =>
-//       ref.read(updateControllerProvider.notifier);
-//   UpdateState get state => ref.watch(updateControllerProvider);
-
-//   @override
-//   void initState() {
-//     safeRebuild(() {
-//       controller.getNoteDetail(noteId: widget.noteId);
-//     });
-
-//     super.initState();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final value = state.noteDetailValue.value;
-
-//   }
-// }
